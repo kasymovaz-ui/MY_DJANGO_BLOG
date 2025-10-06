@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<h1>{{ object.title }}</h1>
+<p>By {{ object.author }} | {{ object.created_at }}</p>
+<p>{{ object.text }}</p>
+<p>Categories:
+    {% for category in object.categories.all %}
+        <span class="badge bg-secondary">{{ category.name }}</span>
+    {% endfor %}
+</p>
+<a href="{% url 'post_update' object.pk %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'post_delete' object.pk %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'post_list' %}" class="btn btn-secondary">Back</a>
+{% endblock %}

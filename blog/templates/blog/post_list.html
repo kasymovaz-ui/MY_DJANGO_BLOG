@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<h1>Posts</h1>
+<a href="{% url 'post_create' %}" class="btn btn-primary mb-3">New Post</a>
+<div class="list-group">
+    {% for post in object_list %}
+        <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">
+            <h5>{{ post.title }}</h5>
+            <small>By {{ post.author }} | {{ post.created_at }}</small>
+        </a>
+    {% empty %}
+        <p>No posts yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}
